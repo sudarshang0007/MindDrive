@@ -1,4 +1,4 @@
-package model;
+package com.siemens.hackathon.model;
 
 public class MindDrive {
 	

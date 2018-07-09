@@ -1,4 +1,4 @@
-package com.siemens.hackathon;
+package com.siemens.hackathon.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

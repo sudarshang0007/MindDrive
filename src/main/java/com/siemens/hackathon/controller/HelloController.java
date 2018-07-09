@@ -1,11 +1,11 @@
-package com.siemens.hackathon;
+package com.siemens.hackathon.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.MindDrive;
+import com.siemens.hackathon.model.MindDrive;
 
 @CrossOrigin
 @RestController
