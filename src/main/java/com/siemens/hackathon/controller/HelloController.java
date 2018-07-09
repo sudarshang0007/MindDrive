@@ -12,7 +12,7 @@ import com.siemens.hackathon.model.MindDrive;
 public class HelloController {
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive")
+	//@RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive")
 	public MindDrive sayHello() {
 		
 	MindDrive md = new MindDrive();
