@@ -1,0 +1,7 @@
+---
+applications:
+- name: mindrive
+  memory: 1024M
+  buildpack: java_buildpack
+  routes:
+  - route: mindrive.apps.eu1-dev.mindsphere.io
