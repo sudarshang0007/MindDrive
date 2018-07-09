@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping( produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping( consumes = {MediaType.APPLICATION_JSON_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
 public class VehicleController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class VehicleController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/vehicle")
     @ResponseStatus(CREATED)
-    public ResponseEntity<VehicleDto> saveVehicle(@RequestBody @Valid VehicleDto vehicleDto) {
+    public ResponseEntity<VehicleDto> saveVehicle(@RequestBody VehicleDto vehicleDto) {
 
         vehicleService.postVehicleData(vehicleDto);
         return new ResponseEntity<VehicleDto>(vehicleDto, HttpStatus.CREATED);
