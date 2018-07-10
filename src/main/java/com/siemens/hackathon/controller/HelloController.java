@@ -134,5 +134,10 @@ public class HelloController {
     public VehicleDetailsEntity getVehicleHealthDataById( @PathVariable String registrationId) {
             return   vehicleDetailsRepository.findByRegistrationId(registrationId);
     } 
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/registrationId")
+    public List<String> getVehicleRegistrationId() {
+            return   vehicleDetailsRepository.findAllByregistrationId();
+    } 
 
 }

@@ -1,5 +1,7 @@
 package com.siemens.hackathon.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +16,9 @@ import com.siemens.hackathon.model.VehicleAvgParameters;
     public interface VehicleDetailsRepository extends CrudRepository<VehicleDetailsEntity, String> {
 
     	VehicleDetailsEntity findByRegistrationId(String registrationId);
+    	    	   	
+    	@Query("Select vde.registrationId from VehicleDetailsEntity vde")
+    	List<String> findAllByregistrationId();
 
     }
         
