@@ -1,7 +1,10 @@
 package com.siemens.hackathon.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import com.siemens.hackathon.model.GpsLocation;
 import com.siemens.hackathon.service.MindDriveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -64,6 +67,7 @@ public class HelloController {
         
         mindDriveEntity.setProfileVe(mindData.get("profileVe"));
         mindDriveEntity.setProfileWeight(mindData.get("profileWeight"));
+        mindDriveEntity.setSession(mindData.get("session"));
 
         mindDriveRepository.save(mindDriveEntity);
   
@@ -78,5 +82,28 @@ public class HelloController {
 	    mindDriveEntity.setCurrentPattern(pattern);
         return  mindDriveEntity;
   
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/trips/session/{sessionId}")
+    public List<GpsLocation> getSessionGps(@PathVariable String sessionId) {
+
+	    //Add orderBy to fetch them in order of timestamp
+        List<MindDriveEntity> mindDriveEntityList = mindDriveRepository.findBySessionOrderByTimeAsc(sessionId);
+
+        List<GpsLocation> gpsLocationList = new ArrayList<GpsLocation>();
+        for(MindDriveEntity mindDriveEntity: mindDriveEntityList)
+        {
+            GpsLocation gpsLocation = new GpsLocation();
+            if(mindDriveEntity.getGpsLatitude()!=null)
+            gpsLocation.setLatitude(Double.parseDouble(mindDriveEntity.getGpsLatitude()));
+
+            if(mindDriveEntity.getGpsLongitude()!=null)
+            gpsLocation.setLongitude(Double.parseDouble(mindDriveEntity.getGpsLongitude()));
+
+            gpsLocationList.add(gpsLocation);
+        }
+
+        return  gpsLocationList;
+
     }
 }

@@ -7,14 +7,18 @@ import org.springframework.stereotype.Repository;
 
 import com.siemens.hackathon.entity.MindDriveEntity;
 
+import java.util.List;
 
-    @Repository
+
+@Repository
     public interface MindDriveRepository extends CrudRepository<MindDriveEntity, String> {
 
         MindDriveEntity findByPid(String pid);
 
         @Query("Select app from MindDriveEntity app where time=(Select max(app1.time) from MindDriveEntity app1 where app1.pid=:pid ) and app.pid=:pid")
         MindDriveEntity findByPidAndTimeStamp(@Param("pid") String pid);
+
+        List<MindDriveEntity> findBySessionOrderByTimeAsc(String sessionId);
 
     }
         
