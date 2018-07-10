@@ -2,6 +2,7 @@ package com.siemens.hackathon.controller;
 
 import java.util.Map;
 
+import com.siemens.hackathon.service.MindDriveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,9 @@ import com.siemens.hackathon.repository.MindDriveRepository;
 public class HelloController {
 	@Autowired
 	MindDriveRepository mindDriveRepository;
+
+	@Autowired
+    MindDriveService mindDriveService;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive")
 	public MindDrive sayHello() {
@@ -67,8 +71,12 @@ public class HelloController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/data/{pid}")
     public MindDriveEntity sayHelloGetData( @PathVariable String pid) {
-	    
- return     mindDriveRepository.findByPidAndTimeStamp(pid);
+
+	    MindDriveEntity mindDriveEntity = mindDriveRepository.findByPidAndTimeStamp(pid);
+
+	    int pattern = mindDriveService.evaluateCurrentPattern(mindDriveEntity);
+	    mindDriveEntity.setCurrentPattern(pattern);
+        return  mindDriveEntity;
   
     }
 }
