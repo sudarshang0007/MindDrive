@@ -1,7 +1,8 @@
 package com.siemens.hackathon.service;
 
-import com.siemens.hackathon.entity.MindDriveEntity;
 import org.springframework.stereotype.Service;
+
+import com.siemens.hackathon.entity.MindDriveEntity;
 
 @Service
 public class MindDriveServiceImpl implements MindDriveService {
@@ -22,13 +23,13 @@ public class MindDriveServiceImpl implements MindDriveService {
         speedValue = Double.parseDouble(mindDriveEntity.getSpeed());
 
         if(mindDriveEntity.getRpm()!=null)
-        rpmValue = Double.parseDouble(mindDriveEntity.getRpm());
+        rpmValue = mindDriveEntity.getRpm();
 
         if(mindDriveEntity.getEngCoolantTmp()!=null)
-        tempValue = Double.parseDouble(mindDriveEntity.getEngCoolantTmp());
+        tempValue = mindDriveEntity.getEngCoolantTmp();
 
         if(mindDriveEntity.getEngLoad()!=null)
-        engineLoadValue = Double.parseDouble(mindDriveEntity.getEngLoad());
+        engineLoadValue =mindDriveEntity.getEngLoad();
 
         double score = ((speedWeight*speedValue)+(rpmWeight*rpmValue)+(engineTempWeight*tempValue)+(engineLoadWeight*engineLoadValue))
                         /(speedWeight+rpmWeight+engineTempWeight+engineLoadValue);
