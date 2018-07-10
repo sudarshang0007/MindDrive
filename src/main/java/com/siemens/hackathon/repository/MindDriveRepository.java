@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.siemens.hackathon.entity.MindDriveEntity;
 import com.siemens.hackathon.model.VehicleAvgParameters;
 
+import java.util.List;
 
-    @Repository
+
+@Repository
     public interface MindDriveRepository extends CrudRepository<MindDriveEntity, String> {
 
         MindDriveEntity findByPid(String pid);
@@ -20,6 +22,8 @@ import com.siemens.hackathon.model.VehicleAvgParameters;
         @Query("Select new com.siemens.hackathon.model.VehicleAvgParameters(avg(app.rpm),avg(app.engCoolantTmp),avg(app.engLoad),avg(app.speed)) "
                         + " from MindDriveEntity app where app.pid=:pid ")
         VehicleAvgParameters getVehicleDataByPid(@Param("pid") String pid);
+
+        List<MindDriveEntity> findBySessionOrderByTimeAsc(String sessionId);
 
     }
         
