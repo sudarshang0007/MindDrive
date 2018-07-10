@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.siemens.hackathon.entity.MindDriveEntity;
+import com.siemens.hackathon.model.VehicleAvgParameters;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ import java.util.List;
 
         @Query("Select app from MindDriveEntity app where time=(Select max(app1.time) from MindDriveEntity app1 where app1.pid=:pid ) and app.pid=:pid")
         MindDriveEntity findByPidAndTimeStamp(@Param("pid") String pid);
+
+        @Query("Select new com.siemens.hackathon.model.VehicleAvgParameters(avg(app.rpm),avg(app.engCoolantTmp),avg(app.engLoad),avg(app.speed)) "
+                        + " from MindDriveEntity app where app.pid=:pid ")
+        VehicleAvgParameters getVehicleDataByPid(@Param("pid") String pid);
 
         List<MindDriveEntity> findBySessionOrderByTimeAsc(String sessionId);
 
