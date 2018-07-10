@@ -1,0 +1,4 @@
+insert into VEHICLE_DETAILS_ENTITY values('761eb5e07a530cf93d5b9ef4ab391eb6','2314567892', 'Petrol','NO','NO','Honda','Jazz','2','Smith','MH 14 EY 1438','2016');
+insert into VEHICLE_DETAILS_ENTITY values('761eb5e07a530cf93d5b9ef4ab391eb7','2314567892', 'Petrol','NO','YES','Volkswagen','Polo','2','Jhon','MH 12 JW 4228','2011');
+insert into VEHICLE_DETAILS_ENTITY values('761eb5e07a530cf93d5b9ef4ab391eb8','2314567892', 'Diesel','NO','NO','Maruti','Wagaon R','2','Alex','MH 11 XZ 4141','2013');
+insert into VEHICLE_DETAILS_ENTITY values('761eb5e07a530cf93d5b9ef4ab391eb9','2314567892', 'Diesel','YES','NO','Skoda','Rapid','2','Kedar','MH 10 PQ 1111','2012');
