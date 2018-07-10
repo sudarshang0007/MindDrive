@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Entity
 @Data
-
 @Table(name="MindDriveEntity")
 public class MindDriveEntity {
 
@@ -14,6 +13,10 @@ public class MindDriveEntity {
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     String id;
+    
+    @Column(name="session")
+    String session;
+    
     
     @Column(name="eml")
     String eml;
