@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siemens.hackathon.entity.MindDriveEntity;
+import com.siemens.hackathon.entity.VehicleDetailsEntity;
 import com.siemens.hackathon.model.GpsLocation;
 import com.siemens.hackathon.model.MindDrive;
 import com.siemens.hackathon.model.MindTripData;
 import com.siemens.hackathon.model.VehicleAvgParameters;
 import com.siemens.hackathon.repository.MindDriveRepository;
+import com.siemens.hackathon.repository.VehicleDetailsRepository;
 import com.siemens.hackathon.service.MindDriveService;
 
 @CrossOrigin
@@ -124,5 +126,13 @@ public class HelloController {
         
      
     }
+    
+    @Autowired
+    VehicleDetailsRepository vehicleDetailsRepository;
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/details/{registrationId}")
+    public VehicleDetailsEntity getVehicleHealthDataById( @PathVariable String registrationId) {
+            return   vehicleDetailsRepository.findByRegistrationId(registrationId);
+    } 
 
 }
