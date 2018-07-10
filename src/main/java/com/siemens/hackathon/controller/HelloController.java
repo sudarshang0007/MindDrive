@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.siemens.hackathon.entity.MindDriveEntity;
 import com.siemens.hackathon.model.MindDrive;
+import com.siemens.hackathon.model.MindTripData;
 import com.siemens.hackathon.model.VehicleAvgParameters;
 import com.siemens.hackathon.repository.MindDriveRepository;
 import com.siemens.hackathon.service.MindDriveService;
@@ -45,6 +48,7 @@ public class HelloController {
         mindDriveEntity.setTime(mindData.get("time"));
         mindDriveEntity.setGpsLongitude(mindData.get("kff1005"));
         mindDriveEntity.setGpsLatitude(mindData.get("kff1006"));
+        mindDriveEntity.setSession(mindData.get("session"));
 
         mindDriveEntity.setSpeed(mindData.get("kff1001"));
         mindDriveEntity.setGpsBearing(mindData.get("kff1007"));
@@ -89,27 +93,13 @@ public class HelloController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/trips/{pid}")
-    public VehicleAvgParameters getTripByPid(@PathVariable String pid) {
+    public ResponseEntity<List<MindTripData>> getTripByPid(@PathVariable String pid) {
         HashMap<String, ArrayList<MindDriveEntity>> sessionEntries = new HashMap<String, ArrayList<MindDriveEntity>>();
-        List<MindDriveEntity> mindDriveEntities = mindDriveRepository.findByPid(pid);
-        System.out.println(mindDriveEntities);
-        ArrayList<MindDriveEntity> min = new ArrayList();
-        for (MindDriveEntity mindDriveEntity : mindDriveEntities) {
-            if (sessionEntries.containsKey(mindDriveEntity.getSession())) {
-
-                min = sessionEntries.get(mindDriveEntity.getSession());
-                min.add(mindDriveEntity);
-                sessionEntries.put(mindDriveEntity.getSession(), min);
-
-            } else {
-                // new entry
-                min = new ArrayList();
-                min.add(mindDriveEntity);
-                sessionEntries.put(mindDriveEntity.getSession(), min);
-            }
-        }
+        List<MindTripData> mindDriveEntities = mindDriveRepository.findByPid(pid);
+        return new ResponseEntity(mindDriveEntities, HttpStatus.OK);
         
-        return mindDriveRepository.getVehicleDataByPid(pid);
+        
+     
     }
 
 }

@@ -1,10 +1,22 @@
 package com.siemens.hackathon.model;
 
-import lombok.Data;
+import javax.persistence.ColumnResult;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class MindTripData {
 
-    double fuel;
-    double distance;
+    String session;
+    String tripDistanceMax;
+
+    String tripDistanceMin;
+
+    String fuelMaX;
+
+String fuelMin;
+
 }
