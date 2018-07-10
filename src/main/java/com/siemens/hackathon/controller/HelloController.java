@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.siemens.hackathon.entity.MindDriveEntity;
 import com.siemens.hackathon.model.MindDrive;
+import com.siemens.hackathon.model.VehicleAvgParameters;
 import com.siemens.hackathon.repository.MindDriveRepository;
 
 @CrossOrigin
@@ -44,12 +45,14 @@ public class HelloController {
         mindDriveEntity.setSpeed(mindData.get("kff1001"));
         mindDriveEntity.setGpsBearing(mindData.get("kff1007"));
         mindDriveEntity.setAirFuelRatio(mindData.get("kff124d"));
-        mindDriveEntity.setRpm(mindData.get("kc"));
+        mindDriveEntity.setRpm(Double.parseDouble(mindData.get("kc")));
+        mindDriveEntity.setEngLoad(Double.parseDouble(mindData.get("k4")));
+
         mindDriveEntity.setMSensor(mindData.get("kff1223"));
         mindDriveEntity.setAccZAxis(mindData.get("kff1222"));
         mindDriveEntity.setAccYAxis(mindData.get("kff1221"));
         mindDriveEntity.setAccXAxis(mindData.get("kff1220"));
-        mindDriveEntity.setEngCoolantTmp(mindData.get("k5"));
+        mindDriveEntity.setEngCoolantTmp(Double.parseDouble(mindData.get("k5")));
         mindDriveEntity.setTripDistance(mindData.get("kff1204"));
         mindDriveEntity.setBaroPressure(mindData.get("k33"));
         mindDriveEntity.setSysVapPressure(mindData.get("k32"));
@@ -71,4 +74,14 @@ public class HelloController {
  return     mindDriveRepository.findByPidAndTimeStamp(pid);
   
     }
+
+	@RequestMapping(method = RequestMethod.GET, value = "/api/getMindDrive/avgData/{pid}")
+    public VehicleAvgParameters getVehicleAvgDataByPid( @PathVariable String pid) {
+            return   mindDriveRepository.getVehicleDataByPid(pid);
+    } 
+
+
+
+
+
 }

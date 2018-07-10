@@ -42,7 +42,7 @@ public class MindDriveEntity {
     String airFuelRatio;
     
     @Column(name="rpm")
-    String rpm;
+    Double rpm;
     
     
     @Column(name="accZAxis")
@@ -57,7 +57,7 @@ public class MindDriveEntity {
     String accXAxis;
     
     @Column(name="engCoolantTmp")
-    String engCoolantTmp;
+    Double engCoolantTmp;
     
     @Column(name="tripDistance")
     String tripDistance;
@@ -68,7 +68,7 @@ public class MindDriveEntity {
     
     
     @Column(name="engLoad")
-    String engLoad;
+    Double engLoad;
     
     
     @Column(name="sysVapPressure")
