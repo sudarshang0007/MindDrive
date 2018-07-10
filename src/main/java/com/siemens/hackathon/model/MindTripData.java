@@ -1,7 +1,5 @@
 package com.siemens.hackathon.model;
 
-import javax.persistence.ColumnResult;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
