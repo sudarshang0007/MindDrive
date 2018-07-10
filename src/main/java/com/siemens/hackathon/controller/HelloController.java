@@ -109,7 +109,6 @@ public class HelloController {
             }
         }
         
-        
         return mindDriveRepository.getVehicleDataByPid(pid);
     }
 
