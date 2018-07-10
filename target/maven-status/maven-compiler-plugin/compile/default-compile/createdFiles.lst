@@ -1,0 +1,17 @@
+com\siemens\hackathon\controller\VehicleController.class
+com\siemens\hackathon\entity\VehicleDataEntity.class
+com\siemens\hackathon\config\DataSourceConfiguration.class
+com\siemens\hackathon\service\VehicleService.class
+com\siemens\hackathon\service\MindDriveService.class
+com\siemens\hackathon\model\VehicleDto.class
+com\siemens\hackathon\service\MindDriveServiceImpl.class
+com\siemens\hackathon\service\VehicleServiceImpl.class
+com\siemens\hackathon\model\MindDrive.class
+com\siemens\hackathon\entity\MindDriveEntity.class
+com\siemens\hackathon\model\VehicleAvgParameters.class
+com\siemens\hackathon\config\SwaggerConfig.class
+com\siemens\hackathon\Application.class
+com\siemens\hackathon\repository\MindDriveRepository.class
+com\siemens\hackathon\model\VehicleDataResource.class
+com\siemens\hackathon\controller\HelloController.class
+com\siemens\hackathon\repository\VehicleRepository.class
