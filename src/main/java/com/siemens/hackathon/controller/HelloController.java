@@ -56,14 +56,30 @@ public class HelloController {
         mindDriveEntity.setSpeed(mindData.get("kff1001"));
         mindDriveEntity.setGpsBearing(mindData.get("kff1007"));
         mindDriveEntity.setAirFuelRatio(mindData.get("kff124d"));
-        mindDriveEntity.setRpm(Double.parseDouble(mindData.get("kc")));
-        mindDriveEntity.setEngLoad(Double.parseDouble(mindData.get("k4")));
+        if(mindData.get("kc") != null) {
+        	 mindDriveEntity.setRpm(Double.parseDouble(mindData.get("kc")));
+        }else
+        	mindDriveEntity.setRpm(0.0);
+        
+        
+       
+        if(mindData.get("k4") != null) {
+        	mindDriveEntity.setEngLoad(Double.parseDouble(mindData.get("k4")));
+        }else
+        	mindDriveEntity.setEngLoad(0.0);
+        
 
         mindDriveEntity.setMSensor(mindData.get("kff1223"));
         mindDriveEntity.setAccZAxis(mindData.get("kff1222"));
         mindDriveEntity.setAccYAxis(mindData.get("kff1221"));
         mindDriveEntity.setAccXAxis(mindData.get("kff1220"));
-        mindDriveEntity.setEngCoolantTmp(Double.parseDouble(mindData.get("k5")));
+        
+        if(mindData.get("k5") != null) {
+        	 mindDriveEntity.setEngCoolantTmp(Double.parseDouble(mindData.get("k5")));
+       }else
+       	mindDriveEntity.setEngCoolantTmp(0.0);
+        
+       
         mindDriveEntity.setTripDistance(mindData.get("kff1204"));
         mindDriveEntity.setBaroPressure(mindData.get("k33"));
         mindDriveEntity.setSysVapPressure(mindData.get("k32"));
